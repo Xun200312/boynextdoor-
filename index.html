@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOYNEXTDOOR (보이넥스트도어) 歷年專輯與音樂全紀錄</title>
+  <meta name="description" content="BOYNEXTDOOR 歷年作品完整回顧，收錄《WHO!》、《WHY..》、《HOW?》、《19.99》、《No Genre》、《HOME》等專輯曲目、概念介紹與官方 MV 觀賞。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚪</text></svg>">
+</head>
+<body class="no-scroll">
+
+  <!-- ================= 1. 敲門/開門動畫 Overlay ================= -->
+  <div class="door-overlay" id="doorOverlay">
+    <div class="door-container">
+      <div class="door-frame">
+        <div class="door-panel" id="doorPanel" title="點擊敲門打開房間！">
+          <div class="door-plate">
+            <span class="plate-text">BND 401</span>
+          </div>
+          <div class="door-panels-grid">
+            <div class="inner-box"></div>
+            <div class="inner-box"></div>
+          </div>
+          <div class="door-knob"></div>
+        </div>
+      </div>
+    </div>
+    <div class="door-action-wrap">
+      <button class="knock-action-btn" id="knockBtn">🚪 Knock knock Who's there?</button>
+      <br>
+      <button class="skip-door-btn" id="skipDoorBtn">跳過開場，直接進入音樂世界 →</button>
+    </div>
+  </div>
+
+  <!-- ================= 2. 網站主導航 ================= -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo-area">
+        <span class="door-icon-mini">🚪</span>
+        <div>
+          <h1 class="logo-title">BOYNEXTDOOR</h1>
+          <span class="logo-sub">DISCOGRAPHY ARCHIVE</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#albums">歷年專輯</a></li>
+        <li><a href="#members">成員檔案</a></li>
+        <li><a href="https://www.youtube.com/@boynextdoor_official/releases" target="_blank" rel="noopener" style="color: #FF0000;">YouTube Releases ↗</a></li>
+        <li><a href="https://weverse.io/boynextdoor" target="_blank" rel="noopener">Weverse ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= 3. Hero 概念橫幅 ================= -->
+    <section class="hero-section">
+      <div class="hero-banner">
+        <div class="hero-text-side">
+          <span class="hero-tag">KOZ ENTERTAINMENT · HYBE</span>
+          <h2 class="hero-title">KNOCK, KNOCK!<br>WE ARE BOYNEXTDOOR</h2>
+          <p class="hero-desc">
+            扣響日常心門的鄰家少年，用最純粹真實的旋律，唱出初戀、離別、成長與站在二十歲門檻前的青春詩篇。
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">2023.05.30</span>
+              <span class="stat-label">出道紀念日</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" id="totalAlbumsCount">15</span>
+              <span class="stat-label">發行作品數</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">ONEDOOR</span>
+              <span class="stat-label">官方粉絲名</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-art-side">
+          <div class="spinning-door-art">
+            <span class="big-door-emoji">🚪</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. 控制列 (分類標籤、發行時間排序與搜尋) ================= -->
+    <section class="control-bar" id="albums">
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">全部作品 (All)</button>
+        <button class="filter-btn" data-filter="full">正規/改版 (Full/Deluxe)</button>
+        <button class="filter-btn" data-filter="mini">迷你專輯 (Mini/EP)</button>
+        <button class="filter-btn" data-filter="single">單曲 (Single)</button>
+        <button class="filter-btn" data-filter="ost">影視合作 (OST)</button>
+        <button class="filter-btn" data-filter="japan">日語作品 (Japan)</button>
+      </div>
+
+      <div class="bar-right-controls">
+        <div class="sort-group">
+          <button class="sort-btn active" id="sortAscBtn" title="依照發行時間由遠到近 (2023 → 2026)">
+            📅 時間正序 ↑
+          </button>
+          <button class="sort-btn" id="sortDescBtn" title="依照發行時間最新優先 (2026 → 2023)">
+            ✨ 最新發行 ↓
+          </button>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="搜尋專輯名稱或歌曲...">
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. 歷年專輯網格列表 ================= -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h3 class="section-title">💿 歷年發行作品庫</h3>
+        <span class="section-subtitle" id="albumCountBadge">共 12 張作品，依發行時間排列</span>
+      </div>
+      <div class="albums-grid" id="albumsGrid">
+        <!-- 由 js/app.js 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- ================= 6. 成員簡介區塊 ================= -->
+    <section class="section-wrapper" id="members">
+      <div class="section-header">
+        <h3 class="section-title">👥 成員檔案室</h3>
+      </div>
+      <div class="members-grid" id="membersGrid">
+        <!-- 由 js/app.js 動態渲染 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 7. 專輯詳細資訊彈跳視窗 (Modal) ================= -->
+  <div class="modal-overlay" id="albumModal">
+    <div class="modal-container">
+      <button class="close-modal-btn" id="closeModalBtn" aria-label="關閉視窗">✕</button>
+      <div class="modal-body" id="modalBody">
+        <!-- 動態填入專輯詳情與曲目清單 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 8. YouTube MV 影片播放視窗 ================= -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-container video-modal-container">
+      <button class="close-modal-btn" id="closeVideoBtn" aria-label="關閉視窗">✕</button>
+      <div class="modal-body">
+        <div class="video-wrapper">
+          <iframe id="videoFrame" src="" title="BOYNEXTDOOR Official MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-direct-bar">
+          <a id="directYoutubeLink" href="https://www.youtube.com/@boynextdoor_official/releases" target="_blank" rel="noopener" class="direct-yt-btn">
+            ▶ 在 YouTube 官方頻道觀看此影片 / 收聽音源 ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 歡迎訊息 Toast -->
+  <div class="welcome-toast" id="welcomeToast">
+    <span>🚪</span>
+    <span>歡迎來到 BOYNEXTDOOR 的專屬音樂房間！</span>
+  </div>
+
+  <!-- ================= 9. 頁尾 Footer ================= -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>BOYNEXTDOOR DISC ARCHIVE</h4>
+        <p>SUNGHO · RIWOO · JAEHYUN · TAESAN · LEEHAN · WOONHAK</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.youtube.com/@boynextdoor_official/releases" target="_blank" rel="noopener">YouTube Releases ↗</a>
+        <a href="https://twitter.com/BOYNEXTDOOR_KOZ" target="_blank" rel="noopener">X (Twitter)</a>
+        <a href="https://www.instagram.com/boynextdoor_official" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 腳本引入 -->
+  <script src="js/data.js"></script>
+  <script src="js/door-anim.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
