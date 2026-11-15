@@ -1,0 +1,579 @@
+/**
+ * BOYNEXTDOOR 歷年作品與成員資料庫
+ * 提供完整的離線備援與非同步載入功能
+ * 嚴格依照發行時間（2023 -> 2026）排序
+ */
+
+const FALLBACK_ALBUMS = [
+  {
+    id: "who",
+    title: "1st Single Album [WHO!]",
+    shortTitle: "WHO!",
+    releaseDate: "2023-05-30",
+    type: "Single Album",
+    era: "初戀三部曲 序章",
+    conceptDescription: "BOYNEXTDOOR 的出道單曲《WHO!》大膽採用三首全主打（Triple Title）形式，以純真坦率視角描繪少年對某人一見鍾情、陷入愛河、直至鼓起勇氣告白的青春歷程。音樂洋溢著清爽的日常感與活潑親近的魅力。",
+    coverImage: "assets/covers/who.jpg",
+    fallbackImage: "ASS/WHO!.jpg",
+    themeColor: "#3A86FF",
+    badge: "Debut Album",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "But I Like You",
+        koreanTitle: "돌아버리겠다",
+        duration: "02:17",
+        isTitle: true,
+        isPreRelease: true,
+        highlightLyrics: "너 때문에 돌아버리겠다! 친구들은 다 내가 미쳤대 (因為你我快要瘋了！朋友們都說我瘋了)",
+        youtubeMvId: "_ItgMr1bMYc"
+      },
+      {
+        trackNumber: 2,
+        title: "One and Only",
+        duration: "02:48",
+        isTitle: true,
+        isPreRelease: true,
+        highlightLyrics: "Listen, I'm the one and only! 거울 보고 한 번 멋진 척 (照著鏡子耍帥一次)",
+        youtubeMvId: "jizAb-SLvtM"
+      },
+      {
+        trackNumber: 3,
+        title: "Serenade",
+        duration: "03:03",
+        isTitle: true,
+        isPreRelease: false,
+        highlightLyrics: "이 밤이 다 지나가도 난 네 집 앞이야 (就算這夜晚過去，我也依然在你家門前)",
+        youtubeMvId: "Uyq9OE8lIz8"
+      }
+    ]
+  },
+  {
+    id: "why",
+    title: "1st EP [WHY..]",
+    shortTitle: "WHY..",
+    releaseDate: "2023-09-04",
+    type: "Mini Album",
+    era: "初戀三部曲 離別篇",
+    conceptDescription: "承接《WHO!》告白後，少年們迎來初次離別的生澀。《WHY..》生動刻畫少年在經歷分手時所感受到的背叛感、困惑、憤怒與悲傷，透過俐落且強烈的節奏，表達出青春期未經修飾的真實情感。",
+    coverImage: "assets/covers/why.jpg",
+    fallbackImage: "ASS/WHY...jpg",
+    themeColor: "#FF006E",
+    badge: "1st EP",
+    tracks: [
+      { trackNumber: 1, title: "But I Like You", duration: "02:17", isTitle: false },
+      { trackNumber: 2, title: "One and Only", duration: "02:48", isTitle: false },
+      { trackNumber: 3, title: "Serenade", duration: "03:03", isTitle: false },
+      { trackNumber: 4, title: "Crying", duration: "03:04", isTitle: false, highlightLyrics: "눈물이 주룩주룩 흘러내려 (眼淚嘩啦嘩啦地流了下來)" },
+      {
+        trackNumber: 5,
+        title: "But Sometimes",
+        koreanTitle: "뭣 같아",
+        duration: "02:57",
+        isTitle: true,
+        highlightLyrics: "다 뭣 같아 다 뭣 같아! 네가 준 선물 다 갖다 버렸어 (全都很糟糕！你送的禮物我都丟掉了)",
+        youtubeMvId: "97_-_WugRFA",
+        youtubeUrl: "https://www.youtube.com/watch?v=97_-_WugRFA&list=RD97_-_WugRFA&start_radio=1"
+      },
+      { trackNumber: 6, title: "ABCDLOVE", duration: "02:45", isTitle: false }
+    ]
+  },
+  {
+    id: "fadeaway",
+    title: "Special Single [Fadeaway]",
+    shortTitle: "Fadeaway",
+    releaseDate: "2023-11-07",
+    type: "Single",
+    era: "網絡漫畫合作企劃",
+    conceptDescription: "熱門 Naver 籃球青春漫畫《Garbage Time》官方合作 OST。BOYNEXTDOOR 化身為球場上揮灑汗水不輕言放棄的熱血高校少年，充滿速度感與澎湃搖滾能量的旋律，唱出無畏無懼的追夢渴望。",
+    coverImage: "assets/covers/fadeaway.jpg",
+    fallbackImage: "ASS/Fadeaway.jpg",
+    themeColor: "#FF5400",
+    badge: "Single",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Fadeaway",
+        koreanTitle: "Fadeaway (From \"GARBAGE TIME\")",
+        duration: "03:15",
+        isTitle: true,
+        highlightLyrics: "절대 멈추지 않아, 코트 위로 쏘아 올린 우리들의 Fadeaway! (在球場上投出的屬於我們的 Fadeaway！)",
+        youtubeMvId: "I6StVU3kABM",
+        youtubeUrl: "https://www.youtube.com/watch?v=I6StVU3kABM&list=RDI6StVU3kABM&start_radio=1"
+      }
+    ]
+  },
+  {
+    id: "how",
+    title: "2nd EP [HOW?]",
+    shortTitle: "HOW?",
+    releaseDate: "2024-04-15",
+    type: "Mini Album",
+    era: "初戀三部曲 完結篇",
+    conceptDescription: "作為初戀三部曲的高潮與完結篇，時間線設定在初見（WHO!）與離別（WHY..）之間那段最熱烈也最跌宕起伏的戀愛日常。主打歌《Earth, Wind & Fire》融合獨特的 Hyper-pop 與急速快嘴風格，展現無法預測的初戀心緒。",
+    coverImage: "assets/covers/how.jpg",
+    fallbackImage: "ASS/HOW.jpg",
+    themeColor: "#FFBE0B",
+    badge: "2nd EP",
+    tracks: [
+      { trackNumber: 1, title: "OUR", duration: "02:37", isTitle: false },
+      { trackNumber: 2, title: "Amnesia", duration: "02:50", isTitle: false },
+      { trackNumber: 3, title: "So let's go see the stars", duration: "03:19", isTitle: false },
+      {
+        trackNumber: 4,
+        title: "Earth, Wind & Fire",
+        duration: "02:59",
+        isTitle: true,
+        highlightLyrics: "You're my Earth, Wind & Fire! 내 맘대로 되지 않는 사랑 (你就像地風火，完全由不得我的愛情)",
+        youtubeMvId: "u9nP3qXQA4o"
+      },
+      { trackNumber: 5, title: "l i f e i s c o o l", duration: "03:16", isTitle: false },
+      { trackNumber: 6, title: "Dear. My Darling", duration: "01:39", isTitle: false },
+      { trackNumber: 7, title: "Earth, Wind & Fire - English Ver.", duration: "02:59", isTitle: false }
+    ]
+  },
+  {
+    id: "miss-night-and-day",
+    title: "OST [Miss Night and Day (Original Television Soundtrack), Pt. 3]",
+    shortTitle: "Miss Night and Day, Pt. 3",
+    releaseDate: "2024-06-29",
+    type: "OST",
+    era: "熱門電視劇官方原聲帶",
+    conceptDescription: "JTBC 人氣奇幻浪漫喜劇《她的日與夜（Miss Night and Day）》官方原聲帶 Part 3。BOYNEXTDOOR 獻唱主題曲《Lucky Charm》，以輕快明朗的節奏與陽光般清澈的合聲，如同幸運護身符般為劇中主角帶來希望與元氣。",
+    coverImage: "assets/covers/miss-night-and-day.jpg",
+    fallbackImage: "ASS/Miss Night and Day.jpg",
+    themeColor: "#FF9F1C",
+    badge: "Drama OST",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Lucky Charm",
+        duration: "03:12",
+        isTitle: true,
+        highlightLyrics: "You're my lucky charm, 언제나 내 곁을 지켜줘 (你就是我的幸運符，永遠守候在我身旁)",
+        youtubeMvId: "VF77gX9T1CU",
+        youtubeUrl: "https://www.youtube.com/watch?v=VF77gX9T1CU&list=RDVF77gX9T1CU&start_radio=1"
+      },
+      {
+        trackNumber: 2,
+        title: "Lucky Charm - Instrumental",
+        duration: "03:12",
+        isTitle: false
+      }
+    ]
+  },
+  {
+    id: "and-jp",
+    title: "Japan 1st Single [AND,]",
+    shortTitle: "AND,",
+    releaseDate: "2024-07-10",
+    type: "Japan Single",
+    era: "日本出道單曲",
+    conceptDescription: "BOYNEXTDOOR 正式進軍日本的出道單曲。收錄了日語版本的經典主打歌以及原創日語曲目《GOOD DAY》，將專屬於少年的青春清爽感跨越國境傳遞給全球 ONEDOOR。",
+    coverImage: "assets/covers/and.jpg",
+    fallbackImage: "ASS/AND，.jpg",
+    themeColor: "#06D6A0",
+    badge: "Japan 1st",
+    tracks: [
+      { trackNumber: 1, title: "One and Only - Japanese Ver.", duration: "02:48", isTitle: false },
+      {
+        trackNumber: 2,
+        title: "Earth, Wind & Fire - Japanese Ver.",
+        duration: "02:59",
+        isTitle: true,
+        youtubeMvId: "pvG71IuqdX0"
+      },
+      { trackNumber: 3, title: "But Sometimes - Japanese Ver.", duration: "02:57", isTitle: false },
+      { trackNumber: 4, title: "GOOD DAY", duration: "03:10", isTitle: false, highlightLyrics: "どんな日も君といれば GOOD DAY (無論哪一天，只要與你在一起就是 GOOD DAY)" }
+    ]
+  },
+  {
+    id: "19-99",
+    title: "3rd EP [19.99]",
+    shortTitle: "19.99",
+    releaseDate: "2024-09-09",
+    type: "Mini Album",
+    era: "二十歲前夕的成長絮語",
+    conceptDescription: "以即將邁入 20 歲的『19.99』這一個不完全但充滿無限可能的年齡為切入點。探討站在成年門檻上的少年們，面對成長的焦慮、對未來的渴望、以及骨子裡無法掩飾的淘氣與自信。主打歌《Nice Guy》完美展現輕熟又俏皮的鄰家魅力。",
+    coverImage: "assets/covers/1999.jpg",
+    fallbackImage: "ASS/19.99.jpg",
+    themeColor: "#8338EC",
+    badge: "3rd EP",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Dangerous",
+        koreanTitle: "부모님 관람불가",
+        duration: "02:20",
+        isTitle: false,
+        isPreRelease: true,
+        highlightLyrics: "오늘 밤은 부모님 관람불가! 조금은 위험해도 우리만의 비밀 (今晚是家長請勿觀看！)",
+        youtubeMvId: "YkCXVgcsGTU"
+      },
+      { trackNumber: 2, title: "Gonna Be A Rock", duration: "03:12", isTitle: false },
+      { trackNumber: 3, title: "SKIT", duration: "01:15", isTitle: false },
+      {
+        trackNumber: 4,
+        title: "Nice Guy",
+        duration: "02:45",
+        isTitle: true,
+        highlightLyrics: "I'm a Nice Guy, 세상 모든 사람들이 날 좋아해 (我是個 Nice Guy，全世界的人都會喜歡我)",
+        youtubeMvId: "HJlc_tFkB3M"
+      },
+      { trackNumber: 5, title: "20", duration: "03:08", isTitle: false },
+      { trackNumber: 6, title: "Call Me", duration: "02:56", isTitle: false },
+      { trackNumber: 7, title: "Nice Guy - English Ver.", duration: "02:45", isTitle: false }
+    ]
+  },
+  {
+    id: "never-loved-this-way-before",
+    title: "Special OST [Never Loved This Way Before (Odd Girl Out X BOYNEXTDOOR)]",
+    shortTitle: "Never Loved This Way Before",
+    releaseDate: "2025-03-14",
+    type: "OST",
+    era: "網路漫畫合作企劃",
+    conceptDescription: "Naver 人氣青春校園漫畫《少女的世界（Odd Girl Out）》與 BOYNEXTDOOR 展開的夢幻聯動 OST。在白色情人節發行的《Never Loved This Way Before》，以心動滿溢的和聲與溫柔旋律，訴說青春期第一次陷入深刻愛戀的真摯告白。",
+    coverImage: "assets/covers/never-loved-this-way-before.jpg",
+    fallbackImage: "ASS/Never Loved This Way Before.jpg",
+    themeColor: "#FF758F",
+    badge: "Webtoon OST",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Never Loved This Way Before",
+        duration: "03:18",
+        isTitle: true,
+        highlightLyrics: "I've never loved this way before, 너를 만난 모든 순간이 기적이야 (遇見你的每個瞬間都是奇蹟)",
+        youtubeMvId: "qTtDGGJ5pQY",
+        youtubeUrl: "https://www.youtube.com/watch?v=qTtDGGJ5pQY"
+      },
+      {
+        trackNumber: 2,
+        title: "Never Loved This Way Before - Inst.",
+        duration: "03:18",
+        isTitle: false
+      }
+    ]
+  },
+  {
+    id: "no-genre",
+    "title": "4th EP [No Genre]",
+    shortTitle: "No Genre",
+    releaseDate: "2025-05-13",
+    type: "Mini Album",
+    era: "不設限的風格實驗",
+    conceptDescription: "撕掉標籤，音樂沒有界限！BOYNEXTDOOR 第四張迷你專輯《No Genre》以自由奔放的曲風混搭，從嘻哈、搖滾到流行復古無縫切換，主打歌《I Feel Good》展現無法被定義的新世代活力。",
+    coverImage: "assets/covers/no-genre.jpg",
+    fallbackImage: "ASS/No Genre.jpg",
+    themeColor: "#E63946",
+    badge: "4th EP",
+    tracks: [
+      { trackNumber: 1, title: "123-78", duration: "02:40", isTitle: false },
+      {
+        trackNumber: 2,
+        title: "I Feel Good",
+        duration: "03:02",
+        isTitle: true,
+        highlightLyrics: "I Feel Good, 오늘 밤 우린 한계를 넘어 (今晚我們超越極限)",
+        youtubeMvId: "ic31SJ4uK4Y",
+        youtubeUrl: "https://www.youtube.com/watch?v=ic31SJ4uK4Y&list=RDic31SJ4uK4Y&start_radio=1"
+      },
+      { trackNumber: 3, title: "Step By Step", duration: "02:50", isTitle: false },
+      { trackNumber: 4, title: "Is That True?", duration: "03:15", isTitle: false },
+      { trackNumber: 5, title: "Next Mistake", duration: "02:58", isTitle: false },
+      { trackNumber: 6, title: "IF I SAY, I LOVE YOU", duration: "03:22", isTitle: false },
+      { trackNumber: 7, title: "I Feel Good - English Ver.", duration: "03:02", isTitle: false }
+    ]
+  },
+  {
+    id: "boylife",
+    title: "Japan 2nd Single [BOYLIFE]",
+    shortTitle: "BOYLIFE",
+    releaseDate: "2025-08-18",
+    type: "Japan Single",
+    era: "日本青春物語第二章",
+    conceptDescription: "日本第二張實體單曲《BOYLIFE》，以主打歌《Count To Love》溫柔訴說少年們的心意，並收錄《I Feel Good》、《Nice Guy》、《Dangerous》的日語特別版本，呈現少年日常的豐富面貌。",
+    coverImage: "assets/covers/boylife.jpg",
+    fallbackImage: "ASS/BOYLIFE.jpg",
+    themeColor: "#5E60CE",
+    badge: "Japan 2nd",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Count To Love",
+        duration: "03:05",
+        isTitle: true,
+        highlightLyrics: "1, 2, 3, Count To Love, 君に届くまで (直到傳達到你心中)"
+      },
+      { trackNumber: 2, title: "I Feel Good - Japanese Version", duration: "03:02", isTitle: false },
+      { trackNumber: 3, title: "Nice Guy - Japanese Version", duration: "02:45", isTitle: false },
+      { trackNumber: 4, title: "Dangerous - Japanese Version", duration: "02:20", isTitle: false }
+    ]
+  },
+  {
+    id: "exchange4-pt1",
+    title: "OST [EXchange4, Pt. 1 (Original Soundtrack)]",
+    shortTitle: "EXchange4, Pt. 1",
+    releaseDate: "2025-10-01",
+    type: "OST",
+    era: "熱門綜藝官方原聲帶",
+    conceptDescription: "人氣戀愛實境節目《換乘戀愛4（EXchange 4）》首波官方原聲帶 Part 1。由 BOYNEXTDOOR 傾情演唱的《Ruin My Life》，用極具感染力的嗓音與感性旋律，描繪回憶與離別交織時，既深陷愛意又無法自拔的矛盾情感。",
+    coverImage: "assets/covers/exchange4-pt1.jpg",
+    fallbackImage: "ASS/EXchange4, Pt. 1.jpg",
+    themeColor: "#4A6FA5",
+    badge: "Drama OST",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "Ruin My Life",
+        duration: "03:25",
+        isTitle: true,
+        highlightLyrics: "You ruin my life, but I still want you here (你擾亂了我的人生，但我依然渴望你在身邊)",
+        youtubeMvId: "vdK2_lGFtog",
+        youtubeUrl: "https://www.youtube.com/watch?v=vdK2_lGFtog&list=PL2Jxuyl0NcIhU0qihl6VcMixIoz2qQ_Ar"
+      },
+      {
+        trackNumber: 2,
+        title: "Ruin My Life (Instrumental) – Instrumental",
+        duration: "03:25",
+        isTitle: false
+      }
+    ]
+  },
+  {
+    id: "the-action",
+    title: "5th EP [The Action]",
+    shortTitle: "The Action",
+    releaseDate: "2025-10-20",
+    type: "Mini Album",
+    era: "好萊塢電影動態敘事",
+    conceptDescription: "將舞台與日常化為熱血大銀幕！《The Action》融合電影場景般的動態感，以主打曲《Hollywood Action》帶領聽眾穿梭於巴黎街頭與片場，滿溢幽默風趣與少年專屬的冒險野心。",
+    coverImage: "assets/covers/the-action.jpg",
+    fallbackImage: "ASS/The Action.jpg",
+    themeColor: "#2A9D8F",
+    badge: "5th EP",
+    tracks: [
+      { trackNumber: 1, title: "Live In Paris", duration: "02:45", isTitle: false },
+      {
+        trackNumber: 2,
+        title: "Hollywood Action",
+        duration: "03:08",
+        isTitle: true,
+        highlightLyrics: "Lights, Camera, Hollywood Action! 우린 영화의 주인공 (我們是電影的主角)",
+        youtubeMvId: "yAtew9dZX_E",
+        youtubeUrl: "https://www.youtube.com/watch?v=yAtew9dZX_E&list=RDyAtew9dZX_E&start_radio=1"
+      },
+      { trackNumber: 3, title: "JAM!", duration: "02:35", isTitle: false },
+      { trackNumber: 4, title: "Bathroom", duration: "03:12", isTitle: false },
+      { trackNumber: 5, title: "As Time Goes By", duration: "03:30", isTitle: false }
+    ]
+  },
+  {
+    id: "say-cheese",
+    title: "Special Single [SAY CHEESE!]",
+    shortTitle: "SAY CHEESE!",
+    releaseDate: "2025-11-10",
+    type: "Single",
+    era: "特別紀念單曲",
+    conceptDescription: "快門定格的每一秒，都是 ONEDOOR 與少年們最珍貴的笑顏。以拍立得與相簿為靈感的特別單曲《SAY CHEESE!》，傳遞滿滿的暖心治癒與陽光笑意。",
+    coverImage: "assets/covers/say-cheese.jpg",
+    fallbackImage: "ASS/SAY CHEESE!.jpg",
+    themeColor: "#F4A261",
+    badge: "Single",
+    tracks: [
+      {
+        trackNumber: 1,
+        title: "SAY CHEESE!",
+        duration: "02:55",
+        isTitle: true,
+        highlightLyrics: "하나 둘 셋, SAY CHEESE! 지금 이 순간을 영원히 기억해 (一二三，永遠記得這一瞬間)",
+        youtubeMvId: "QZFT-_Uon_g",
+        youtubeUrl: "https://www.youtube.com/watch?v=QZFT-_Uon_g&list=RDQZFT-_Uon_g&start_radio=1"
+      }
+    ]
+  },
+  {
+    id: "home",
+    title: "1st Full Album [HOME]",
+    shortTitle: "HOME",
+    releaseDate: "2026-06-08",
+    type: "Full Album",
+    era: "正規一輯 歸宿與心門",
+    conceptDescription: "BOYNEXTDOOR 出道以來的首張正規專輯《HOME》！回到最初的門扉象徵，收錄 9 首全新力作。由震撼熱烈的主打歌《VIRAL》引領全輯，探討屬於成長的歸屬感、友誼與真摯深情。",
+    coverImage: "assets/covers/home.jpg",
+    fallbackImage: "ASS/HOME.jpg",
+    themeColor: "#E76F51",
+    badge: "1st Album",
+    tracks: [
+      { "trackNumber": 1, "title": "06070", "duration": "01:50", "isTitle": false },
+      {
+        "trackNumber": 2,
+        "title": "VIRAL",
+        "duration": "02:48",
+        "isTitle": true,
+        "highlightLyrics": "Go viral, 온 세상이 우리를 주목해 (全世界都注視著我們)",
+        "youtubeMvId": "zGsj0fDHB_s",
+        "youtubeUrl": "https://www.youtube.com/watch?v=zGsj0fDHB_s&list=RDzGsj0fDHB_s&start_radio=1"
+      },
+      {
+        "trackNumber": 3,
+        "title": "ddok ddok ddok（똑똑똑）",
+        "duration": "03:10",
+        "isTitle": false,
+        "highlightLyrics": "똑똑똑, 너의 닫힌 마음에 문을 두드려 (叩叩叩，敲響你關閉的心門)",
+        "youtubeMvId": "WxGWMI2B7r8",
+        "youtubeUrl": "https://www.youtube.com/watch?v=WxGWMI2B7r8&list=RDWxGWMI2B7r8&start_radio=1"
+      },
+      { "trackNumber": 4, "title": "ADIOS!", "duration": "03:02", "isTitle": false },
+      { "trackNumber": 5, "title": "Upside Down", "duration": "02:55", "isTitle": false },
+      { "trackNumber": 6, "title": "DIVE", "duration": "03:20", "isTitle": false },
+      { "trackNumber": 7, "title": "Forever You（기억해줘요）", "duration": "03:45", "isTitle": false },
+      { "trackNumber": 8, "title": "I Wonder", "duration": "03:12", "isTitle": false },
+      { "trackNumber": 9, "title": "I Wonder, Always（僅收錄於CD）", "duration": "03:30", "isTitle": false }
+    ]
+  },
+  {
+    id: "home-deluxe",
+    title: "1st Full Album Repackage [HOME: DELUXE]",
+    shortTitle: "HOME: DELUXE",
+    releaseDate: "2026-09-28",
+    type: "Full Album",
+    era: "正規改版 豪華旗艦篇",
+    conceptDescription: "正規一輯的完滿豪華版《HOME: DELUXE》，全輯擴充至 13 首曲目。追加收錄《ANIMAL》、《CLICHE》、《Count To Love (Korean Ver.)》、《400 Years》以及《Boom Boom Boom》，為第一章的少年物語寫下磅礴結語。",
+    coverImage: "assets/covers/home-deluxe.jpg",
+    fallbackImage: "ASS/HOME DELUXE.jpg",
+    themeColor: "#9B5DE5",
+    badge: "Deluxe Album",
+    tracks: [
+      {
+        "trackNumber": 1,
+        "title": "ANIMAL",
+        "duration": "03:00",
+        "isTitle": true,
+        "highlightLyrics": "Wild like an animal, 거침없이 달려가 (像野獸般無畏奔跑)"
+      },
+      { "trackNumber": 2, "title": "CLICHE", "duration": "02:52", "isTitle": false },
+      { "trackNumber": 3, "title": "06070", "duration": "01:50", "isTitle": false },
+      {
+        "trackNumber": 4,
+        "title": "VIRAL",
+        "duration": "02:48",
+        "isTitle": true,
+        "highlightLyrics": "Go viral, 온 세상이 우리를 주목해 (全世界都注視著我們)",
+        "youtubeMvId": "zGsj0fDHB_s",
+        "youtubeUrl": "https://www.youtube.com/watch?v=zGsj0fDHB_s&list=RDzGsj0fDHB_s&start_radio=1"
+      },
+      {
+        "trackNumber": 5,
+        "title": "ddok ddok ddok（똑똑똑）",
+        "duration": "03:10",
+        "isTitle": false,
+        "highlightLyrics": "똑똑똑, 너의 닫힌 마음에 문을 두드려 (叩叩叩，敲響你關閉的心門)",
+        "youtubeMvId": "WxGWMI2B7r8",
+        "youtubeUrl": "https://www.youtube.com/watch?v=WxGWMI2B7r8&list=RDWxGWMI2B7r8&start_radio=1"
+      },
+      { "trackNumber": 6, "title": "ADIOS!", "duration": "03:02", "isTitle": false },
+      { "trackNumber": 7, "title": "Upside Down", "duration": "02:55", "isTitle": false },
+      { "trackNumber": 8, "title": "DIVE", "duration": "03:20", "isTitle": false },
+      { "trackNumber": 9, "title": "Forever You（기억해줘요）", "duration": "03:45", "isTitle": false },
+      { "trackNumber": 10, "title": "I Wonder", "duration": "03:12", "isTitle": false },
+      { "trackNumber": 11, "title": "Count To Love (Korean Ver.)", "duration": "03:05", "isTitle": false },
+      { "trackNumber": 12, "title": "400 Years", "duration": "03:40", "isTitle": false },
+      { "trackNumber": 13, "title": "Boom Boom Boom", "duration": "02:45", "isTitle": false }
+    ]
+  }
+];
+
+const FALLBACK_MEMBERS = [
+  {
+    id: "sungho",
+    stageName: "SUNGHO",
+    koreanName: "성호",
+    chineseName: "朴成淏",
+    positions: ["Main Vocalist"],
+    representativeEmoji: "🦊",
+    signatureColor: "#4EA8DE",
+    quote: "最乾淨透徹的嗓音，如同晨光叩響清晨的窗戶。",
+    description: "BOYNEXTDOOR 的大哥與主唱，擁有清澈悠揚且極具穿透力的高音聲線，性格沉穩可靠。"
+  },
+  {
+    id: "riwoo",
+    stageName: "RIWOO",
+    koreanName: "리우",
+    chineseName: "李常赫",
+    positions: ["Main Dancer", "Vocalist"],
+    representativeEmoji: "🦦",
+    signatureColor: "#F77F00",
+    quote: "音樂響起的瞬間，腳步自然踏出最自在的舞步。",
+    description: "團隊的主舞與舞蹈核心，舞步細膩且節奏感極佳。平時個性安靜溫和，舞台上爆發力十足。"
+  },
+  {
+    id: "jaehyun",
+    stageName: "JAEHYUN",
+    koreanName: "명재현",
+    chineseName: "明宰鉉",
+    positions: ["Leader", "Producer", "Rapper", "Vocalist"],
+    representativeEmoji: "🐕",
+    signatureColor: "#3A86FF",
+    quote: "每一句旋律都是我親手寫給世界的情書，一起敲開音樂的門吧！",
+    description: "活力隊長與全能製作人。擁有豐沛的創作才華、強大感染力的舞台表現力與主持口才。"
+  },
+  {
+    id: "taesan",
+    stageName: "TAESAN",
+    koreanName: "태산",
+    chineseName: "韓東旼",
+    positions: ["Producer", "All-rounder", "Vocalist", "Rapper"],
+    representativeEmoji: "🐱",
+    signatureColor: "#FF006E",
+    quote: "復古是永不過時的浪漫，在音符裡尋找獨特的原創靈魂。",
+    description: "擁有獨特時尚品味與深厚復古搖滾審美的全能成員。音色極具辨識度，為作品注入藝術質感。"
+  },
+  {
+    id: "leehan",
+    stageName: "LEEHAN",
+    koreanName: "이한",
+    chineseName: "金桐儇",
+    positions: ["Vocalist"],
+    representativeEmoji: "🐟",
+    signatureColor: "#06D6A0",
+    quote: "像水一樣溫柔平靜，療癒身邊所有愛我們的人。",
+    description: "擁有精緻雕塑般的五官與治癒系嗓音。熱愛水生動物與大自然，思維感性且溫柔體貼。"
+  },
+  {
+    id: "woonhak",
+    stageName: "WOONHAK",
+    koreanName: "운학",
+    chineseName: "金雲鶴",
+    positions: ["Maknae", "Producer", "Vocalist"],
+    representativeEmoji: "🧸",
+    signatureColor: "#FFBE0B",
+    quote: "永遠的陽光能量製造機，在最耀眼的年紀做最純粹的音樂！",
+    description: "團隊中年紀最小的活力忙內與音樂創作人。笑容燦爛且擁有用不完的熱情，創作力驚人。"
+  }
+];
+
+window.BND_DATA = {
+  albums: FALLBACK_ALBUMS,
+  members: FALLBACK_MEMBERS,
+  
+  /**
+   * 異步載入 JSON 資料，若失敗則回退至預設資料
+   */
+  async loadData() {
+    try {
+      const [resAlbums, resMembers] = await Promise.all([
+        fetch('./data/albums.json'),
+        fetch('./data/members.json')
+      ]);
+      if (resAlbums.ok && resMembers.ok) {
+        this.albums = await resAlbums.json();
+        this.members = await resMembers.json();
+        console.log("✓ 成功從 JSON 檔案載入 BOYNEXTDOOR 資料庫 (共 " + this.albums.length + " 張專輯)");
+      }
+    } catch (e) {
+      console.warn("ℹ 提示：直接以 file:// 開啟，自動採用內建離線備份資料。", e);
+    }
+    return { albums: this.albums, members: this.members };
+  }
+};

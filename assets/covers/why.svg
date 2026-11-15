@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-why" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF006E"/>
+      <stop offset="100%" stop-color="#D90429"/>
+    </linearGradient>
+    <filter id="shadow-why" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="5" dy="6" stdDeviation="5" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="500" height="500" fill="url(#bg-why)"/>
+  <rect x="25" y="25" width="450" height="450" rx="16" fill="none" stroke="#FFE5EC" stroke-width="4" stroke-dasharray="10 6" opacity="0.7"/>
+
+  <!-- Broken heart / tear graphic -->
+  <g transform="translate(250, 200)" filter="url(#shadow-why)">
+    <circle cx="0" cy="0" r="105" fill="#FFE5EC" stroke="#2B2D42" stroke-width="6"/>
+    <!-- Band-aid / sticker effect -->
+    <rect x="-70" y="-20" width="140" height="40" rx="10" fill="#FFBE0B" stroke="#2B2D42" stroke-width="4" transform="rotate(-20)"/>
+    <circle cx="-35" cy="0" r="3" fill="#2B2D42" transform="rotate(-20)"/>
+    <circle cx="0" cy="0" r="3" fill="#2B2D42" transform="rotate(-20)"/>
+    <circle cx="35" cy="0" r="3" fill="#2B2D42" transform="rotate(-20)"/>
+    <text x="0" y="8" font-family="'Impact', sans-serif" font-size="28" fill="#2B2D42" text-anchor="middle" transform="rotate(-20)">CRACK</text>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 395)" filter="url(#shadow-why)">
+    <rect x="-140" y="-45" width="280" height="65" rx="12" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <text x="0" y="-8" font-family="'Impact', 'Arial Black', sans-serif" font-size="34" font-weight="900" fill="#FF006E" text-anchor="middle" letter-spacing="3">WHY..</text>
+    <text x="0" y="12" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2B2D42" text-anchor="middle" letter-spacing="3">1ST EP ALBUM</text>
+  </g>
+
+  <!-- Top band -->
+  <text x="250" y="65" font-family="'Arial Black', sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">BOYNEXTDOOR</text>
+  <text x="250" y="88" font-family="sans-serif" font-size="11" fill="#FFE5EC" text-anchor="middle" letter-spacing="2">RELEASED 2023.09.04</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-fade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5400"/>
+      <stop offset="100%" stop-color="#9E2A2B"/>
+    </linearGradient>
+    <filter id="shadow-fade" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="4" dy="6" stdDeviation="5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="500" height="500" fill="url(#bg-fade)"/>
+  
+  <!-- Basketball net lines -->
+  <circle cx="250" cy="190" r="85" fill="#FFB703" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M 165 190 Q 250 250 335 190" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  <path d="M 250 105 L 250 275" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  <path d="M 190 130 Q 230 190 190 250" fill="none" stroke="#2B2D42" stroke-width="4"/>
+  <path d="M 310 130 Q 270 190 310 250" fill="none" stroke="#2B2D42" stroke-width="4"/>
+
+  <!-- Badge -->
+  <g transform="translate(250, 395)" filter="url(#shadow-fade)">
+    <rect x="-150" y="-45" width="300" height="65" rx="12" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <text x="0" y="-7" font-family="'Impact', 'Arial Black', sans-serif" font-size="30" font-weight="900" fill="#FF5400" text-anchor="middle" letter-spacing="2">FADEAWAY</text>
+    <text x="0" y="13" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2B2D42" text-anchor="middle" letter-spacing="2">GARBAGE TIME OST</text>
+  </g>
+  <text x="250" y="65" font-family="'Arial Black', sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">BOYNEXTDOOR</text>
+</svg>
