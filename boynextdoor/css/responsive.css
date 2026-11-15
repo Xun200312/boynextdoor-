@@ -1,0 +1,104 @@
+/* =========================================================
+   BOYNEXTDOOR 網站響應式適配 (responsive.css)
+========================================================= */
+
+@media (max-width: 900px) {
+  .hero-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 36px 20px;
+    gap: 28px;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .modal-album-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal-cover-side {
+    width: 180px;
+  }
+
+  .modal-badges {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .control-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .albums-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .track-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .track-meta {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px dashed #E2E8F0;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-stats {
+    gap: 16px;
+  }
+
+  .stat-num {
+    font-size: 1.6rem;
+  }
+
+  .door-frame {
+    width: 180px;
+    height: 280px;
+  }
+
+  .modal-body {
+    padding: 20px 14px;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+}
